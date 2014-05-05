@@ -15,7 +15,8 @@ public class Book extends Article
 		this.setIsbn(Article.DEFAULT_STRING);
 	}
 	public Book(Book book) {
-		this(book.getName(), (book.getNumber()+1), book.getResponsible(), book.getSupplier(), book.getPrice(), book.getVat(), book.getIsbn());
+		super(book);
+		this.setIsbn( book.getIsbn() );
 	}
 	
 	

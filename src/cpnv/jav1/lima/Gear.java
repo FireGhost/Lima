@@ -18,7 +18,8 @@ public class Gear extends Article
 		this.setSize(DEFAULT_SIZE);
 	}
 	public Gear(Gear gear) {
-		this(gear.getName(), (gear.getNumber()+1), gear.getResponsible(), gear.getSupplier(), gear.getPrice(), gear.getVat(), gear.getSize());
+		super(gear);
+		this.setSize( gear.getSize() );
 	}
 	
 	
