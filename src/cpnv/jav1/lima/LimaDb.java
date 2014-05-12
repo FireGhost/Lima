@@ -10,7 +10,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.util.Log;
-import android.widget.Toast;
 
 public class LimaDb {
 // Class that allows access to the Lima database through a web service
@@ -54,9 +53,14 @@ public class LimaDb {
 		}
 	}
 	
-	// Executes the query and returns the number of affeted or selected records
-	// A negative value indicates that an error occurred
-	// In the case of a SELECT, the first record has *NOT* been read at this point
+	/**
+	 * Executes the query and returns the number of affected or selected records
+	 * A negative value indicates that an error occurred
+	 * In the case of a SELECT, the first record has *NOT* been read at this point
+	 * 
+	 * @param query The query string in SQL format
+	 * @return number of affected records or -1 if error
+	 */
 	public int executeQuery (String query)
 	{
 		HashMap<String, String> postData = new HashMap<String, String>();// The data of the POST request
@@ -87,7 +91,11 @@ public class LimaDb {
 		return nbRecords();
 	}
 	
-	// Reads the next record; returns false if there was no more records
+	
+	/**
+	 * Reads the next record; returns false if there was no more records
+	 * @return The next record or false
+	 */
 	public boolean moveNext()
 	{
 		_fields = new HashMap<String, String>();// Zap the pairs key/value from previous record

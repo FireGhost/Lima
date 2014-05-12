@@ -16,6 +16,7 @@
     <string name="uitDebugAction1">Article</string>
     <string name="uitDebugAction2">Book</string>
     <string name="uitDebugAction3">Gear</string>
+    <string name="uitDebugAction4">DbTest</string>
     <string name="empty"></string>
     
 </resources>

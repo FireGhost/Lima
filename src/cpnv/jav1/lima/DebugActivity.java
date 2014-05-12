@@ -28,11 +28,13 @@ public class DebugActivity extends Activity
         
         // Setup event handler on action button
         _btn = (Button)findViewById(R.id.action1);
-       	_btn.setOnClickListener(this); 
+       	_btn.setOnClickListener(this);
         _btn = (Button)findViewById(R.id.action2); 
-       	_btn.setOnClickListener(this); 
+       	_btn.setOnClickListener(this);
         _btn = (Button)findViewById(R.id.action3); 
-       	_btn.setOnClickListener(this); 
+       	_btn.setOnClickListener(this);
+       	_btn = (Button)findViewById(R.id.action4); 
+       	_btn.setOnClickListener(this);
        	
        	// Get reference on the output textview
 		_output = (TextView)findViewById(R.id.outputzone);
@@ -261,6 +263,20 @@ public class DebugActivity extends Activity
 			
 			// Write out result
 			_output.setText(_output.getText()+"\nScore = "+nbpts+"/18");
+			
+			break;
+		
+		case R.id.action4:
+			_output.setText("LimaDB testing...");
+			
+			LimaDb db = new LimaDb("http://192.168.0.4");
+			
+			_output.setText( _output.getText() +"\n\nSELECT * FROM cpnvclass");
+			int nbrCpnvClass = db.executeQuery("SELECT * FROM cpnvclass");
+			_output.setText( _output.getText() +"\nNbrAffectedRecords"+ nbrCpnvClass +"\n");
+			
+			for (int i = 0; i < nbrCpnvClass; i++)
+				_output.setText( _output.getText() +"\n"+ db.moveNext() );
 			
 			break;
 		}
