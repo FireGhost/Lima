@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LimaActivity extends Activity
+public class Menu extends Activity
 							implements OnClickListener {
 
 	// References on controls of this activity
@@ -44,12 +44,12 @@ public class LimaActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.cmdMainDebug: // Debug button -> switch to debug activity
-			Intent myIntent = new Intent(LimaActivity.this, DebugActivity.class);
+			Intent myIntent = new Intent(Menu.this, DebugActivity.class);
 			// Let's pass some parameters to the debug activity
 			myIntent.putExtra("arg0", "arg0 is a string value, unlike arg1, which is an integer");
 			myIntent.putExtra("arg1", 5);
 			// Call the activity
-			LimaActivity.this.startActivity(myIntent);			
+			Menu.this.startActivity(myIntent);			
 			break;
 		case R.id.cmdMainValidation: // Validation button -> switch to Validation activity
 			break;

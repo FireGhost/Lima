@@ -12,27 +12,38 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * Allows querying a remote database using a web service.
+ * The SQL query is sent by HTTP POST to the service, which sends data back in XML.
+ * The data returned is parsed in LimaDb and made available to the user through
+ * public methods
+ * 
+ * @author Xavier
+ * @version 1.0
+ * 
+ */
 public class LimaDb {
-// Class that allows access to the Lima database through a web service
-// Author: X. Carrel
-// Date: May 2014
 	
-	final String LIMA_ERROR_FIELD_DOES_NOT_EXIST = ">>>Lima error: that field does not exist<<<";
-	
-	public enum queryType { SELECT, INSERT, UPDATE, DELETE }
+	/**
+	 * Constant indicating that the user tried to read the value of a field that is not present in the data returned
+	 */
+	public final String LIMA_ERROR_FIELD_DOES_NOT_EXIST = ">>>Lima error: that field does not exist<<<";
 	
 	private String _wsURL; // Address of the webservice
 	private String _selection; // Data retrieved from a select query (XML format)
 	
 	// for XML parsing of the response to a select
-	XmlPullParserFactory _xmlFactoryObject;
-	XmlPullParser _myparser;
-	int _event;
-	HashMap<String, String> _fields = new HashMap<String, String>();// The pairs key/value
+	private XmlPullParserFactory _xmlFactoryObject;
+	private XmlPullParser _myparser;
+	private int _event;
+	private HashMap<String, String> _fields = new HashMap<String, String>();// The pairs key/value
 	
 	// ================================== Constructors ==========================================
 
-	// Constructor takes one argument: the address of the webservice
+	/**
+	 * @param wsURL
+	 * The URL of the web service, i.e: to which the query will be POSTed
+	 */
 	public LimaDb (String wsURL)
 	{
 		_wsURL = wsURL;
@@ -40,7 +51,12 @@ public class LimaDb {
 	
 	// ================================== Public methods ==========================================
 
-	// Returns true if the connection with the service is established
+	/**
+	 * Checks if the Lima database is available
+	 * 
+	 * @return
+	 * true if the connection to the web service and the the database is good
+	 */
 	public boolean connectionIsOK () 
 	{
 		HashMap<String, String> postData = new HashMap<String, String>();// The data of the POST request
@@ -54,9 +70,16 @@ public class LimaDb {
 		}
 	}
 	
-	// Executes the query and returns the number of affeted or selected records
-	// A negative value indicates that an error occurred
-	// In the case of a SELECT, the first record has *NOT* been read at this point
+	/**
+	 * Executes the query and returns the number of affected or selected records<br>
+	 * A negative value indicates that an error occurred<br>
+	 * In the case of a SELECT, the first record has <b>NOT</b> been read at this point
+	 * 
+	 * @param query
+	 * The SQL query to execute on the remote server
+	 * @return
+	 * The number of affected or selected records
+	 */
 	public int executeQuery (String query)
 	{
 		HashMap<String, String> postData = new HashMap<String, String>();// The data of the POST request
@@ -87,7 +110,12 @@ public class LimaDb {
 		return nbRecords();
 	}
 	
-	// Reads the next record; returns false if there was no more records
+	/** 
+	 * Reads the next record from the current recordset
+	 * 
+	 * @return
+	 * true if a record was successfully read, false if there was no more records or the XML returned was bad
+	 */
 	public boolean moveNext()
 	{
 		_fields = new HashMap<String, String>();// Zap the pairs key/value from previous record
@@ -131,16 +159,22 @@ public class LimaDb {
 		return eor;
 	}
 	
-	// Returns the value of the field "fname" of the current record
-	// If the field does not exist in the record, the return value is that of the constant LIMA_ERROR_FIELD_DOES_NOT_EXIST
+	/** 
+	 * Reads the value of a field in the current record
+	 * 
+	 * @param fname
+	 * the name of the field to read
+	 * 
+	 * @return
+	 * The value of the field "fname" of the current record, or the constant LIMA_ERROR_FIELD_DOES_NOT_EXIST 
+	 * if the field does not exist in the record
+	 */
 	public String getField(String fname)
 	{
 		if (!_fields.containsKey(fname)) return LIMA_ERROR_FIELD_DOES_NOT_EXIST; // No Such Field
 		return _fields.get(fname);
 	}
-	
-	// Executes the INSERT query and returns the number of created records
-	
+		
 	// ================================== Private methods ==========================================
 
 	private String httpPost(HashMap<String, String> data, String page)
