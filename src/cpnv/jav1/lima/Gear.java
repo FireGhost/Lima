@@ -1,7 +1,8 @@
 package cpnv.jav1.lima;
 
 
-public class Gear extends Article{
+public class Gear extends Article implements Comparable<Gear>
+{
 
 	// Initialization variable size
 	private String _size;
@@ -47,8 +48,8 @@ public class Gear extends Article{
 	 * 0 if 'this' is equal to 'other'
 	 * -1 if 'this' is smaller than 'other'
 	 */
-	public int compareTo (Gear other) {
-		
+	@Override
+	public int compareTo(Gear other) {
 		/**
 		 * Compare alphabetically
 		 */
@@ -67,12 +68,13 @@ public class Gear extends Article{
 			}
 		}
 		
+		
+		
 		/**
 		 * Compare with sizes
 		 */
 		Size otherSize = new Size(other.getSize());
 		Size thisSize = new Size(this.getSize());
-		
 		switch (thisSize.compareTo(otherSize)) 
 		{
 		case 1:
@@ -105,7 +107,6 @@ public class Gear extends Article{
 		
 		// At end, if no return before, automatically return 0 (equals)
 		return 0;
-		
 	}
 
 }
