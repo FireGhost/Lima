@@ -24,22 +24,11 @@ public class DeliveryStatus {
 	public DeliveryStatus(int deliveryStatus) throws Exception {
 		setDeliveryStatus(deliveryStatus);
 	}
-	
-	
-	public String getDeliveryStatusString() {
-		switch (_deliveryStatus) {
-		case TAKEN_ID:
-			return TAKEN_STRING;
-			
-		case NOT_TAKEN_ID:
-			return NOT_TAKEN_STRING;
-			
-		case NOT_AVAILABLE_ID:
-			return NOT_AVAILABLE_STRING;
-		}
-		
-		return "";
+	public DeliveryStatus(String deliveryStatusString) throws Exception {
+		setDeliveryStatus(deliveryStatusString);
 	}
+	
+	
 	
 	
 	public int getDeliveryStatusColor() {
@@ -68,15 +57,50 @@ public class DeliveryStatus {
 	}
 	
 	
+	public static String[] getDeliveryStatusStrings() {
+		return new String[] {TAKEN_STRING, NOT_TAKEN_STRING, NOT_AVAILABLE_STRING};
+	}
+	
+	
+	
 	public int getDeliveryStatus() {
 		return _deliveryStatus;
 	}
-	
 	public void setDeliveryStatus(int deliveryStatus) throws Exception {
 		if (deliveryStatus < 1 || deliveryStatus > 4)
 			throw new Exception(ERROR_NO_EXISTANT);
 		else
 			_deliveryStatus = deliveryStatus;
+	}
+	
+	
+	public String getDeliveryStatusString() {
+		switch (_deliveryStatus) {
+		case TAKEN_ID:
+			return TAKEN_STRING;
+			
+		case NOT_TAKEN_ID:
+			return NOT_TAKEN_STRING;
+			
+		case NOT_AVAILABLE_ID:
+			return NOT_AVAILABLE_STRING;
+		}
+		
+		return "";
+	}
+	public void setDeliveryStatus(String deliveryStatusString) throws Exception {
+		if (deliveryStatusString.equals( TAKEN_STRING )) {
+			_deliveryStatus = TAKEN_ID;
+		}
+		else if (deliveryStatusString.equals( NOT_TAKEN_STRING )) {
+			_deliveryStatus = NOT_TAKEN_ID;
+		}
+		else if (deliveryStatusString.equals( NOT_AVAILABLE_STRING )) {
+			_deliveryStatus = NOT_AVAILABLE_ID;
+		}
+		else {
+			throw new Exception(ERROR_NO_EXISTANT);
+		}
 	}
 
 }

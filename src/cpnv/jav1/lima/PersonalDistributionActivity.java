@@ -46,6 +46,11 @@ public class PersonalDistributionActivity extends Activity {
          *    WORKING WITH BDD
          */
         
+        
+        //getLoaderManager().initLoader(0, null, null);
+        //http://developer.android.com/guide/components/loaders.html
+        
+        
         LimaDb db = new LimaDb("http://192.168.0.4");
         
         db.executeQuery("SELECT "
@@ -111,15 +116,17 @@ public class PersonalDistributionActivity extends Activity {
         	txtStatus.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
-					AlertDialog.Builder builder = new Builder(getApplicationContext());
+					final String deliveryStatus[] = DeliveryStatus.getDeliveryStatusStrings();
+					
+					AlertDialog.Builder builder = new Builder(PersonalDistributionActivity.this);
 					builder.setTitle("Pick a status"); // TODO: Put this string in a file
-					builder.setItems(R.array.delivery_status, new AlertDialog.OnClickListener() {
+					builder.setItems(deliveryStatus, new AlertDialog.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
-							Toast.makeText(getApplicationContext(), arg1, Toast.LENGTH_LONG).show();
+							Toast.makeText(PersonalDistributionActivity.this, deliveryStatus[arg1], Toast.LENGTH_LONG).show();
 						}
 					});
-					builder.create();
+					builder.create().show();
 				}
 			});
         	
