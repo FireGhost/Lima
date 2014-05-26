@@ -29,7 +29,7 @@ public class DebugActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.debug);
         
-        final String résultat = ""; 
+        final String result = ""; 
         // Setup event handler on action button
         _btn = (Button)findViewById(R.id.action1); 
        	_btn.setOnClickListener(this); 
@@ -45,18 +45,18 @@ public class DebugActivity extends Activity
 		
 		// Initialize array
 		equipment[0] = new Gear ("Blouse", "t vo", "HM", 72.0, 8.25, 0, false, "XS");
-		equipment[1] = new Gear ("Blouse", "é.  ", "HM", 72.0, 8.25, 0, false, "XXS");
+		equipment[1] = new Gear ("Blouse", "√©.  ", "HM", 72.0, 8.25, 0, false, "XXS");
 		equipment[2] = new Gear ("Blouse", "uxe,", "Armani", 72.0, 8.25, 0, false, "M");
 		equipment[3] = new Gear ("Pantalon", " n'e", "HM", 72.0, 8.25, 0, false, "L");
 		equipment[4] = new Gear ("Pantalon", "u'or", "Armani", 72.0, 8.25, 0, false, "S");
 		equipment[5] = new Gear ("Blouse", " cal", "HM", 72.0, 8.25, 0, false, "S");
-		equipment[6] = new Gear ("Pantalon", "Là, ", "HM", 72.0, 8.25, 0, false, "XXL");
+		equipment[6] = new Gear ("Pantalon", "L√†, ", "HM", 72.0, 8.25, 0, false, "XXL");
 		equipment[7] = new Gear ("Pantalon", "dre ", "Armani", 72.0, 8.25, 0, false, "XS");
 		equipment[8] = new Gear ("Pantalon", "et b", "HM", 72.0, 8.25, 0, false, "X");
 		equipment[9] = new Gear ("Pantalon", "st q", "Armani", 72.0, 8.25, 0, false, "M");
 		equipment[10] = new Gear ("Blouse", "eaut", "HM", 72.0, 8.25, 0, false, "XL");
 		equipment[11] = new Gear ("Blouse", "me e", "Armani", 72.0, 8.25, 0, false, "S");
-		equipment[12] = new Gear ("Blouse", "é, l", "Armani", 72.0, 8.25, 0, false, "L");
+		equipment[12] = new Gear ("Blouse", "√©, l", "Armani", 72.0, 8.25, 0, false, "L");
 		equipment[13] = new Gear ("Pantalon", "tout", "HM", 72.0, 8.25, 0, false, "XL");
 		equipment[14] = new Gear ("Blouse", "lupt", "Armani", 72.0, 8.25, 0, false, "XS");
     }
@@ -75,7 +75,7 @@ public class DebugActivity extends Activity
 				_output.setText(_output.getText()+"\n"+equipment[i].dump());
 				check += equipment[i].getNumber();
 			}
-			_output.setText(_output.getText()+"\n\nContrôle: "+check);
+			_output.setText(_output.getText()+"\n\nContr√¥le: "+check);
 			break;
 		case R.id.action2: // Trier
 			
@@ -87,9 +87,9 @@ public class DebugActivity extends Activity
 						equipment[i] = equipment[cmp];
 						equipment[cmp] = temp;
 					}
-			_output.setText("Tri terminé");
+			_output.setText("Tri termin√©");
 			break;
-		case R.id.action3: // Mélanger
+		case R.id.action3: // M√©langer
 			
 			for (int i=0; i<equipment.length-1; i++)
 			{
@@ -98,18 +98,18 @@ public class DebugActivity extends Activity
 				equipment[i] = equipment[r];
 				equipment[r] = temp;
 			}
-			_output.setText("Mélange terminé");
+			_output.setText("M√©lange termin√©");
 			break;
 		case R.id.action4: // Rechercher
 			
-			Gear quid = new Gear ("Pantalon", "Là, ", "HM", 72.0, 8.25, 0, false, "XXL");
+			Gear quid = new Gear ("Pantalon", "L√†, ", "HM", 72.0, 8.25, 0, false, "XXL");
 
 			int count = 0;
 			
 			for (int i=0; i<equipment.length-1; i++)
 				if (equipment[i].compareTo(quid) == 0) count++;
 			
-			_output.setText("Trouvé "+count+ " fois "+ quid.dump()+ " dans la liste");
+			_output.setText("Trouv√© "+count+ " fois "+ quid.dump()+ " dans la liste");
 			break;
 		}
 	}
