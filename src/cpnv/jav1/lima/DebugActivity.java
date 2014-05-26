@@ -1,6 +1,8 @@
 package cpnv.jav1.lima;
 
-import cpnv.jav1.lima.R;
+import java.sql.Timestamp;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,11 +37,13 @@ public class DebugActivity extends Activity
         
         // Setup event handler on action button
         _btn = (Button)findViewById(R.id.action1); 
-       	_btn.setOnClickListener(this); 
+       	_btn.setOnClickListener(this);
         _btn = (Button)findViewById(R.id.action2); 
-       	_btn.setOnClickListener(this); 
+       	_btn.setOnClickListener(this);
         _btn = (Button)findViewById(R.id.action3); 
-       	_btn.setOnClickListener(this); 
+       	_btn.setOnClickListener(this);
+        _btn = (Button)findViewById(R.id.goDistribEleve); 
+       	_btn.setOnClickListener(this);
        	
        	// Get reference on the output textview
 		_output = (TextView)findViewById(R.id.outputzone);
@@ -53,12 +57,24 @@ public class DebugActivity extends Activity
 		{
 		case R.id.action1: // Add timestamp to the debug text
 			_output.setText(_output.getText()+"\nAction 1");
+			/*
+			LimaDb db = new LimaDb("http://192.168.0.4");
+			db.executeQuery("INSERT INTO delivery (fk_student, fk_article, deliverystatus, lastupdate) VALUES (1, 1, 1, NOW())");
+			db.executeQuery("INSERT INTO delivery (fk_student, fk_article, deliverystatus, lastupdate) VALUES (1, 2, 2, NOW())");
+			db.executeQuery("INSERT INTO delivery (fk_student, fk_article, deliverystatus, lastupdate) VALUES (1, 3, 3, NOW())");
+			db.executeQuery("INSERT INTO delivery (fk_student, fk_article, deliverystatus, lastupdate) VALUES (1, 4, 4, NOW())");
+			*/
 			break;
 		case R.id.action2: // get data from web service using POST
 			_output.setText(_output.getText()+"\nAction 2");
 			break;
 		case R.id.action3: // Read button text from external file
 			_output.setText(_output.getText()+"\nAction 3");
+			break;
+		case R.id.goDistribEleve:
+			Intent personalDistribIntent = new Intent(this, PersonalDistributionActivity.class);
+			personalDistribIntent.putExtra(PersonalDistributionActivity.KEY_PERSON_ID, 93); // TODO: Change this default value (93) for the person's id
+			startActivity( personalDistribIntent );
 			break;
 		}
 	}

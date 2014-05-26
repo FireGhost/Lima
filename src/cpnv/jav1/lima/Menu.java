@@ -49,7 +49,7 @@ public class Menu extends Activity
 			myIntent.putExtra("arg0", "arg0 is a string value, unlike arg1, which is an integer");
 			myIntent.putExtra("arg1", 5);
 			// Call the activity
-			Menu.this.startActivity(myIntent);			
+			Menu.this.startActivity(myIntent);
 			break;
 		case R.id.cmdMainValidation: // Validation button -> switch to Validation activity
 			break;

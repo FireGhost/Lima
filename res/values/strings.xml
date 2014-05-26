@@ -19,5 +19,6 @@
     <string name="empty"></string>
     <string name="uitGoAct1">Menu</string>
     <string name="uitGoAct2">Login</string>
+    <string name="persDisActivityLabel">Personal Distribution</string>
     
 </resources>
