@@ -1,5 +1,6 @@
 package cpnv.jav1.lima;
 
+
 public class Gear extends Article{
 
 	// Initialization variable size
@@ -47,7 +48,64 @@ public class Gear extends Article{
 	 * -1 if 'this' is smaller than 'other'
 	 */
 	public int compareTo (Gear other) {
+		
+		/**
+		 * Compare alphabetically
+		 */
+		int otherLength = other.getName().length();
+		for (int i = 0; i < otherLength; i++) {
+			try {
+				if (this.getName().charAt(i) > other.getName().charAt(i)) {
+					return 1;
+				}
+				else if (other.getName().charAt(i) > this.getName().charAt(i)) {
+					return -1;
+				}
+			}
+			catch (IndexOutOfBoundsException e) {
+				break;
+			}
+		}
+		
+		/**
+		 * Compare with sizes
+		 */
+		Size otherSize = new Size(other.getSize());
+		Size thisSize = new Size(this.getSize());
+		
+		switch (thisSize.compareTo(otherSize)) 
+		{
+		case 1:
+			return 1;
+			
+		case -1:
+			return -1;
+			
+		case 0:
+			break;
+		}
+		
+		
+		/**
+		 * Compare with supplier name
+		 */
+		int otherSupplierLength = other.getSupplier().length();
+		for (int i = 0; i < otherSupplierLength; i++) {
+			try {
+				if (this.getSupplier().charAt(i) > other.getSupplier().charAt(i))
+					return 1;
+				else if (other.getSupplier().charAt(i) > this.getSupplier().charAt(i))
+					return -1;
+			}
+			catch (IndexOutOfBoundsException e) {
+				break;
+			}
+		}
+		
+		
+		// At end, if no return before, automatically return 0 (equals)
 		return 0;
+		
 	}
 
 }

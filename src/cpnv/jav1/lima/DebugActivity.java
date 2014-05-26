@@ -1,13 +1,7 @@
 package cpnv.jav1.lima;
 
-import java.util.ArrayList;
-import java.util.zip.Inflater;
-
-import cpnv.jav1.lima.R;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,7 +23,7 @@ public class DebugActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.debug);
         
-        final String result = ""; 
+        
         // Setup event handler on action button
         _btn = (Button)findViewById(R.id.action1); 
        	_btn.setOnClickListener(this); 
@@ -80,13 +74,15 @@ public class DebugActivity extends Activity
 		case R.id.action2: // Trier
 			
 			for (int i=0; i<equipment.length-2; i++)
-				for (int cmp=equipment.length-1; cmp > i; cmp--)
-					if (equipment[i].compareTo(equipment[cmp]) < 0)
+				for (int cmp=equipment.length-1; cmp > i; cmp--) {
+					int compare = equipment[i].compareTo(equipment[cmp]); 
+					if (compare < 0)
 					{
 						Gear temp = equipment[i];
 						equipment[i] = equipment[cmp];
 						equipment[cmp] = temp;
 					}
+				}
 			_output.setText("Tri terminé");
 			break;
 		case R.id.action3: // Mélanger
