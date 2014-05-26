@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="debTitle">Lima - Debug</string>
+    <string name="uitMainDebug">Debug</string>
+    <string name="uitDebugAction1">Afficher</string>
+    <string name="uitDebugAction2">Trier</string>
+    <string name="uitDebugAction3">Mélanger</string>
+    <string name="uitDebugAction4">Rechercher</string>
+    
+</resources>

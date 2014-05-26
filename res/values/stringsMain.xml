@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lima</string>
+    <string name="uitMainValidation">Validation</string>
+    <string name="uitMainInventory">Inventaire</string>
+    <string name="uitMainDistribution">Distribution</string>
+    <string name="empty"></string>
+    <string name="uitGoAct1">Menu</string>
+    <string name="uitGoAct2">Login</string>
+    
+</resources>
